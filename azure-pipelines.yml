@@ -36,6 +36,6 @@ stages:
         - task: DownloadPipelineArtifact@2
           displayName: 'Download the published artifact'
           inputs:
-            artifact: 'drop'
+            artifact: 'publish'
             patterns: '**/*.zip'
             path: './'
