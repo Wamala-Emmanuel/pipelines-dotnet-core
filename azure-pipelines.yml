@@ -26,3 +26,16 @@ stages:
 
         - script: dotnet publish --no-restore --configuration Release --output .\publish
           displayName: Build and publish the application
+        - task: ArchiveFiles@2
+          inputs:
+            rootFolderOrFile: './publish'
+            includeRootFolder: false
+            archiveType: 'zip'
+            archiveFile: 'publish.zip'
+            replaceExistingArchive: true
+        - task: DownloadPipelineArtifact@2
+          displayName: 'Download the published artifact'
+          inputs:
+            artifact: 'drop'
+            patterns: '**/*.zip'
+            path: './'
