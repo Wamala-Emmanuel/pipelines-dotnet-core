@@ -9,7 +9,7 @@ variables:
   dotnetSdkVersion: '6.x'
 
 stages:
-  - stage: Restore and Build
+  - stage: Restore_and_Build
     jobs:
       - job: Run_Continuous_Integration_Tasks
         steps:
