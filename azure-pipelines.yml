@@ -1,0 +1,28 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  buildConfiguration: 'Release'
+  dotnetSdkVersion: '6.x'
+
+stages:
+  - stage: Restore and Build
+    jobs:
+      - job: Run_Continuous_Integration_Tasks
+        steps:
+        - task: UseDotNet@2
+          inputs:
+            version: $(dotnetSdkVersion)
+          displayName: 'Use .NET SDK $(dotnetSdkVersion)'
+
+        - script: dotnet restore
+          displayName: Download dependencies
+
+        - script: dotnet test
+          displayName: Run unit tests
+
+        - script: dotnet publish --no-restore -configuration:Release --output:publish
+          displayName: Build and publish the application
