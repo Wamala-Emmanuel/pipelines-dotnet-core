@@ -26,15 +26,14 @@ stages:
 
         - script: dotnet publish --no-restore --configuration Release --output ./publish
           displayName: Build and publish the application
-        - script: ls -a
           
-        # - task: ArchiveFiles@2
-        #   inputs:
-        #     rootFolderOrFile: './publish'
-        #     includeRootFolder: true
-        #     archiveType: 'zip'
-        #     archiveFile: 'publish.zip'
-        #     replaceExistingArchive: true
+        - task: ArchiveFiles@2
+          inputs:
+            rootFolderOrFile: './publish'
+            includeRootFolder: true
+            archiveType: 'zip'
+            archiveFile: 'publish.zip'
+            replaceExistingArchive: true
             
         # - task: DownloadBuildArtifacts@1
         #   inputs:
