@@ -35,20 +35,23 @@ stages:
             archiveFile: 'publish.zip'
             replaceExistingArchive: true
             
-        - task: DownloadBuildArtifacts@1
+          
+  - stage: Download_Artifact
+    dependsOn: Restore_and_build
+    jobs:
+      - job: 
+        steps:
+        - task: DownloadPipelineArtifact@2
           inputs:
             buildType: 'current'
-            downloadType: 'single'
             artifactName: 'publish.zip'
-            downloadPath: './artifact'
-          
-  # - stage: Deploy_to_Environment
-  #   jobs:
-  #     - deployment: Run_Continuous_Integration_Tasks
-  #       steps:
-  #       - task: AzureWeb
-  #         inputs:
-  #           version: $(dotnetSdkVersion)
-  #         displayName: 'Use .NET SDK $(dotnetSdkVersion)'
+            downloadPath: '$(Pipeline.Workspace)'
+
+      # - deployment: Run_Continuous_Integration_Tasks
+      #   steps:
+      #   - task: AzureWeb
+      #     inputs:
+      #       version: $(dotnetSdkVersion)
+      #     displayName: 'Use .NET SDK $(dotnetSdkVersion)'
 
 
