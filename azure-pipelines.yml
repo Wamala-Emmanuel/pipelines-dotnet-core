@@ -24,12 +24,12 @@ stages:
         - script: dotnet test
           displayName: Run unit tests
 
-        - script: dotnet publish --no-restore --configuration Release --output ./publish.zip
+        - script: dotnet publish --no-restore --configuration Release --output ./publish
           displayName: Build and publish the application
           
         - task: ArchiveFiles@2
           inputs:
-            rootFolderOrFile: './publish.zip'
+            rootFolderOrFile: './publish'
             includeRootFolder: true
             archiveType: 'zip'
             archiveFile: 'publish.zip'
