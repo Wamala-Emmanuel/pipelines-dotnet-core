@@ -31,32 +31,14 @@ stages:
           inputs:
             pathToPublish: './publish.zip'
             artifactName: wamala
-          
-        # - task: ArchiveFiles@2
-        #   inputs:
-        #     rootFolderOrFile: './publish'
-        #     includeRootFolder: true
-        #     archiveType: 'zip'
-        #     archiveFile: 'publish.zip'
-        #     replaceExistingArchive: true
+
             
           
-  # - stage: Download_Artifact
+  # - stage: Deploy_to_Environment
   #   dependsOn: Restore_and_build
   #   jobs:
-  #     - job: 
-  #       steps:
-  #       - task: DownloadPipelineArtifact@2
-  #         inputs:
-  #           buildType: 'current'
-  #           artifactName: 'wamala'
-  #           downloadPath: '$(Pipeline.Workspace)'
+  #   - deployment: Run_Continuous_Integration_Tasks
+    
 
-      # - deployment: Run_Continuous_Integration_Tasks
-      #   steps:
-      #   - task: AzureWeb
-      #     inputs:
-      #       version: $(dotnetSdkVersion)
-      #     displayName: 'Use .NET SDK $(dotnetSdkVersion)'
 
 
