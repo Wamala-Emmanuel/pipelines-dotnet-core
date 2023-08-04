@@ -35,6 +35,7 @@ stages:
             archiveFile: 'publish.zip'
             replaceExistingArchive: true
             
+        - script: ls -a
         - task: DownloadBuildArtifacts@1
           inputs:
             buildType: 'current'
