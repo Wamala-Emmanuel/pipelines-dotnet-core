@@ -40,7 +40,7 @@ stages:
             buildType: 'current'
             downloadType: 'single'
             artifactName: 'publish.zip'
-            downloadPath: '.'
+            downloadPath: './artifact'
           
   # - stage: Deploy_to_Environment
   #   jobs:
