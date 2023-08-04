@@ -41,3 +41,14 @@ stages:
             artifact: 'publish.zip'
             patterns: '**/*.zip'
             path: './'
+
+  # - stage: Deploy_to_Environment
+  #   jobs:
+  #     - deployment: Run_Continuous_Integration_Tasks
+  #       steps:
+  #       - task: AzureWeb
+  #         inputs:
+  #           version: $(dotnetSdkVersion)
+  #         displayName: 'Use .NET SDK $(dotnetSdkVersion)'
+
+
