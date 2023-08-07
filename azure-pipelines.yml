@@ -30,7 +30,7 @@ stages:
         - task: PublishBuildArtifacts@1
           inputs:
             pathToPublish: './publish.zip'
-            artifactName: wamala
+            artifactName: dotnetapp-build-artifact
 
             
           
