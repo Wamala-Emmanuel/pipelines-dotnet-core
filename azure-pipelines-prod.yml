@@ -1,5 +1,5 @@
 trigger:
-- develop
+- master
 
 pool:
   vmImage: 'windows-latest'
@@ -30,7 +30,7 @@ stages:
         - task: PublishBuildArtifacts@1
           inputs:
             pathToPublish: './publish.zip'
-            artifactName: dotnetapp-build-artifact-test
+            artifactName: dotnetapp-build-artifact-prod
 
             
           
