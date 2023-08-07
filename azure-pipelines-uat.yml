@@ -1,0 +1,43 @@
+trigger:
+- develop
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  buildConfiguration: 'Release'
+  dotnetSdkVersion: '6.x'
+
+stages:
+  - stage: Restore_and_Build
+    jobs:
+      - job: Run_Continuous_Integration_Tasks
+        steps:
+        - task: UseDotNet@2
+          inputs:
+            version: $(dotnetSdkVersion)
+          displayName: 'Use .NET SDK $(dotnetSdkVersion)'
+
+        - script: dotnet restore
+          displayName: Download dependencies
+
+        - script: dotnet test
+          displayName: Run unit tests
+
+        - script: dotnet publish --no-restore --configuration Release --output ./publish.zip
+          displayName: Build and publish the application
+
+        - task: PublishBuildArtifacts@1
+          inputs:
+            pathToPublish: './publish.zip'
+            artifactName: dotnetapp-build-artifact
+
+            
+          
+  # - stage: Deploy_to_Environment
+  #   dependsOn: Restore_and_build
+  #   jobs:
+  #   - deployment: Run_Continuous_Integration_Tasks
+    
+
+
