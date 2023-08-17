@@ -19,14 +19,22 @@ stages:
           inputs:
             version: $(dotnetSdkVersion)
 
-        - script: dotnet restore
+        - script: |
+            dotnet restore
           displayName: Install dependencies
 
-        - script: dotnet test
+        - script: |
+            dotnet test
           displayName: Run unit tests
 
-        - script: dotnet publish --no-restore --configuration Release --output ./publish.zip
+        - script: |
+            dotnet publish --no-restore --configuration Release --output ./publish
           displayName: Build & package (.zip file)
+
+        - script: |
+            cp -r ./* publish
+            zip -r publish.zip ./publish
+          displayName: Create a .ZIP file artifact
 
         - task: PublishBuildArtifacts@1
           displayName: Publish build artifact (.zip file)
