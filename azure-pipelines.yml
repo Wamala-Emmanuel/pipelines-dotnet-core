@@ -3,7 +3,7 @@ trigger:
 - develop
 
 pool:
-  vmImage: 'windows-latest'
+  vmImage: 'ubuntu-latest'
 
 variables:
   buildConfiguration: 'Release'
@@ -28,19 +28,19 @@ stages:
           displayName: Run unit tests
 
         - script: |
-            dotnet publish --no-restore --configuration Release --output ./publish
+            dotnet publish --no-restore --configuration Release --output ./artifact
           displayName: Build & package (.zip file)
 
         - script: |
-            cp -r ./* publish
-            zip -r publish.zip ./publish
+            cp -r ./* artifact
+            zip -r artifact.zip ./artifact
           displayName: Create a .ZIP file artifact
 
         - task: PublishBuildArtifacts@1
           displayName: Publish build artifact (.zip file)
           inputs:
-            pathToPublish: './publish.zip'
-            artifactName: dotnetapp-build-artifact
+            pathToPublish: './artifact.zip'
+            artifactName: artifact
 
             
 
